@@ -37,8 +37,8 @@ defmodule SpaceTravel do
     %{probe | direction: Enum.find_index(@directions, fn x -> x == direction end)}
   end
 
-  def validate_position(probe, board) do
-    (probe.x <= elem(board, 0) and probe.x >= 0 and probe.y <= elem(board, 1) and probe.y > 0) or
+  def validate_position(probe, {x, y}) do
+    (probe.x <= x and probe.x >= 0 and probe.y <= y and probe.y >= 0) or
       raise "Ops! parece que perdemos contato com a sonda :-(. Verifique se os parâmetros enviados são válidos ou se não ultrapassam o limite da malha."
 
     probe
@@ -62,6 +62,7 @@ SpaceTravel.start(
     {3, 3, "E", ["M", "M", "R", "M", "M", "R", "M", "R", "R", "M"]},
     {2, 2, "W", ["M", "R", "M", "M", "R"]},
     {5, 5, "N", ["L", "M", "M", "M"]},
+    {0, 0, "E", ["M", "M"]},
     {0, 0, "W", ["M", "M"]}
   ]
 )
